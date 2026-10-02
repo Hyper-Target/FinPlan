@@ -1,0 +1,29 @@
+tipoentidad,codigoentidad,nombre_corto,categoria,marca_comercial,ofrece_cdt,nota
+1,7,Bancolombia,Banco tradicional,,si,
+1,1,Banco de Bogotá,Banco tradicional,,si,
+1,39,Davivienda,Banco tradicional,,si,Referencia del simulador replicado
+1,13,BBVA Colombia,Banco tradicional,,si,
+1,23,Banco de Occidente,Banco tradicional,,si,
+1,2,Banco Popular,Banco tradicional,,si,
+1,49,AV Villas,Banco tradicional,,si,
+1,30,Banco Caja Social,Banco tradicional,,si,
+1,42,Scotiabank Colpatria,Banco tradicional,,si,
+1,6,Itaú,Banco tradicional,,si,
+1,12,GNB Sudameris,Banco tradicional,,si,
+1,59,Banco Santander,Banco tradicional,,si,
+1,43,Banco Agrario,Banco tradicional,,si,
+1,54,Bancoomeva,Banco tradicional,,si,
+1,56,Banco Falabella,Banco tradicional,,si,
+1,63,Banco Serfinanza,Banco tradicional,,si,
+1,55,Banco Finandina,Banco digital,,si,
+1,65,Lulo Bank,Banco digital,,si,
+1,57,Banco Pichincha,Banco digital,Pibank,si,La tasa es la del banco completo; Pibank es su marca digital
+1,51,Banco Credifinanciera,Banco digital,Ban100,si,La tasa es la del banco completo; Ban100 es su marca digital
+4,128,Nu Colombia,Fintech,Nu,si,Compañía de financiamiento; también reporta cuenta de ahorro (uca 7)
+4,108,Iris CF,Fintech,Iris,si,
+4,132,Plata,Fintech,Plata,si,
+4,127,Bold CF,Fintech,Bold,si,
+4,129,KOA CF,Fintech,KOA,si,
+4,26,Tuya,Fintech,Tuya,si,
+4,130,Nequi,Fintech,Nequi,no,Solo ahorro (uca 7); no emite CDT
+4,124,RappiPay,Fintech,RappiPay,no,Solo ahorro (uca 7); no emite CDT

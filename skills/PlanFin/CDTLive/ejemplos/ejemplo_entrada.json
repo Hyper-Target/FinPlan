@@ -1,0 +1,14 @@
+{
+  "descripcion": "Ejecución real del 2026-09-29 (corte Superfinanciera 2026-09-25)",
+  "comando": "python skills/PlanFin/CDTLive/scripts/cdtlive.py --monto 10000000 --plazo 360 --periodicidad vencimiento",
+  "entradas": {"monto": 10000000, "plazo_dias": 360, "periodicidad": "vencimiento", "retencion": 0.04},
+  "resultado_esperado_forma": {
+    "mejor_entidad": "Banco Pichincha (Pibank)",
+    "tasa_ea_bruta": 0.1346,
+    "interes_neto_cop": 1273334,
+    "rentabilidad_real_ea": 0.0628,
+    "ipc_12m": 0.0625,
+    "promedio_sistema": 0.1208
+  },
+  "nota": "Las cifras cambian cada día hábil; el ejemplo sirve para comparar la forma de la salida, no los valores."
+}

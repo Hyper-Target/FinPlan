@@ -1,0 +1,9 @@
+{
+  "descripcion": "Ejecución real del 2026-09-29 (datos al corte 2026-09-25)",
+  "comando": "python skills/PlanFin/RiskLive/scripts/risklive.py --aporte 1000000 --meta 80000000 --horizonte 5 --pesos 60,25,15 --ahorro-inicial 5000000",
+  "entradas": {"aporte_mensual": 1000000, "meta": 80000000, "horizonte_anios": 5, "pesos": [0.6, 0.25, 0.15],
+               "ahorro_inicial": 5000000, "n_sim": 10000, "seed": 42, "crecimiento_aporte": "ipc", "rebalanceo": "mensual"},
+  "resultado_esperado_forma": {"p_meta": 0.318, "mediana_real": 76928501, "percentil_5": 66949562, "percentil_95": 88411988,
+                               "aporte_para_80": 1127533},
+  "nota": "Las cifras cambian con los datos del día; el ejemplo sirve para comparar la forma de la salida, no los valores."
+}
