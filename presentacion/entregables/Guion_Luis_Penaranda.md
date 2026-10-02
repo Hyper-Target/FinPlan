@@ -79,19 +79,19 @@ Antes de ver la primera skill, hay una pregunta que se la hizo Leydis cuando vio
 
 Gracias, Leydis. Con esas reglas claras, veamos la primera herramienta.
 
-## Diapositiva 14 · Cómo se pidió (3 min)
+## Diapositiva 14 · Cómo se plantea (3 min)
 
-CDTLive responde una pregunta: ¿dónde rinde más un CDT hoy? Lo que me interesa mostrarles es cómo se pidió, porque no lo pedí todo de una vez. Fueron cuatro mensajes.
+CDTLive responde una pregunta: ¿dónde rinde más un CDT hoy? Lo que me interesa mostrarles es cómo se plantea el problema, porque no se le pide todo al agente de una vez. Son cuatro etapas.
 
-El primero fue la idea, con un ejemplo concreto. Dije que quería una skill que trajera información en vivo de CDT y puse el enlace del simulador de Davivienda como el cálculo que quería replicar. Un ejemplo vale más que un párrafo de explicación.
+La primera es el problema y el referente. La pregunta es concreta, y el referente es algo que ya existe y que queremos replicar: el simulador de CDT de Davivienda. Un ejemplo de referencia vale más que un párrafo de explicación.
 
-El segundo fue pedirle solo que planeara. Escribí: "por ahora solo planea, dime qué fuentes de bancos colombianos podemos obtener". Todavía no quería código. Quería ver si íbamos en la dirección correcta.
+La segunda es la planeación. Primero se identifican las fuentes oficiales posibles para los bancos y las fintech de Colombia. Todavía no se escribe código. Es el momento de comprobar que vamos en la dirección correcta.
 
-El tercero fue pedirle los enlaces exactos. Que buscara de manera precisa los links que usaríamos para extraer la información y los probara con consultas reales.
+La tercera es la verificación de fuentes. Se buscan los enlaces exactos y se prueban con consultas reales, para confirmar las columnas, las fechas y la cobertura de cada dato.
 
-Y el cuarto fue el prompt detallado. Le pedí que fuera para los bancos y las fintech más importantes de Colombia, que toda salida fuera un Excel y un informe en Markdown, y que me diera un prompt extremadamente detallado.
+Y la cuarta es la especificación. Se define el entregable, que es un Excel con fórmulas y un informe en Markdown, y el estándar de calidad: que la skill se pueda ejecutar sin errores incluso con un modelo pequeño.
 
-A la derecha está lo que hizo la diferencia: un ejemplo concreto, plan antes que código, enlaces verificados, un formato exigido y un estándar de calidad, que fue que la skill pudiera ejecutarla sin errores incluso un modelo pequeño.
+A la derecha está lo que hace sólido el planteamiento: un referente concreto, planeación antes que código, enlaces verificados, un entregable definido y un estándar explícito y comprobable.
 
 ## Diapositiva 15 · Cómo se construyó (3 min)
 
@@ -149,13 +149,15 @@ Leydis les muestra el Excel, que es lo que más le gustó a ella como contadora.
 
 Gracias, Leydis. La segunda herramienta responde otra pregunta: si ahorro cada mes, ¿con qué probabilidad llego a mi meta?
 
-## Diapositiva 22 · Cómo se pidió (2,25 min)
+## Diapositiva 22 · Cómo se plantea (2,25 min)
 
-Esta es la skill que más conecta con el curso, porque parte del Model Risk que vimos con el profesor. Lo pedí así: "que haga lo del Model Risk pero con información en vivo, que genere un Excel y demás".
+Esta es la skill que más conecta con el curso, porque parte del Model Risk que trabajamos con el profesor. El objetivo es llevar ese modelo a finanzas personales, con datos oficiales en vivo, y entregar un Excel y un informe.
 
-El primer paso que le exigí fue leer los dos archivos de Model Risk del profesor y documentar todo antes de programar: las hojas, las tablas, los nombres y las fórmulas. Y encontró algo interesante. El Model Risk del curso es una plantilla. Tiene la estructura del modelo, con la tabla MBASE y las variables PerRate, EAR y NOM, y trae series de mercado hasta 2024, pero no trae la simulación. Es el esqueleto sobre el que se construye el análisis de riesgo.
+El primer paso, el paso cero, es documentar el modelo del curso antes de programar: las hojas, las tablas, los nombres de las variables y las fórmulas. Así sabemos exactamente qué estructura hay que conservar. Es la tabla MBASE, con Period, Inflow, Outflow, NetCF y Balance, y las variables PerRate, EAR y NOM.
 
-Entonces RiskLive conserva esa estructura y agrega lo que faltaba: la calibración con datos de hoy y el Monte Carlo. Las entradas son el aporte mensual, la meta en pesos de hoy, el ahorro inicial, los años y cómo se reparte entre CDT, COLCAP y dólares. Y el estándar fue el mismo: la estadística va en Python con semilla fija, el Excel con fórmulas vivas y un informe que interpreta.
+A partir de ahí, RiskLive agrega lo que necesita una persona para tomar decisiones: la calibración con datos de hoy, la simulación Monte Carlo, la sensibilidad y los controles de integridad.
+
+Las entradas son el aporte mensual, la meta en pesos de hoy, el ahorro inicial, los años y cómo se reparte entre CDT, COLCAP y dólares. Y el estándar es el mismo de CDTLive: la estadística va en Python con semilla fija, el Excel con fórmulas vivas y un informe que interpreta.
 
 [Pasar la palabra a Leydis]
 Leydis les va a mostrar cómo se parece este modelo al que vimos en clase.

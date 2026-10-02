@@ -4,11 +4,11 @@ import { PRINCIPIOS_PROMPT, SECUENCIA_PROMPTS, USO_EJEMPLOS, PROMPT_MAESTRO, PRO
 
 let md = `# Guía: cómo pedirle a un agente que construya una buena skill
 
-Documento generado desde la presentación "De chatbot a agente" (Planeación Financiera, MFi Uninorte). Resume lo que funcionó al construir CDTLive y RiskLive.
+Documento generado desde la presentación "De chatbot a agente" (Planeación Financiera, MFi Uninorte). Resume las prácticas que se aplicaron al construir CDTLive y RiskLive.
 
 ## 1. Ocho reglas para pedir bien
 
-| # | Regla | Qué significa | Cómo se pidió en esta sesión |
+| # | Regla | Qué significa | Ejemplo de redacción |
 |---|---|---|---|
 `;
 PRINCIPIOS_PROMPT.forEach((p, i) => { md += `| ${i + 1} | ${p.t} | ${p.d} | "${p.cita}" |\n`; });

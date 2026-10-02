@@ -2,6 +2,8 @@
 
 Skills de agente para finanzas personales en Colombia, con datos oficiales en vivo, y la presentación que explica cómo construirlas. Proyecto de Planeación Financiera (Maestría en Finanzas, Universidad del Norte) de Luis D. Peñaranda y Leydis Niebles.
 
+**Sitio web:** https://hyper-target.github.io/FinPlan/ (explicación, demo, instalación paso a paso y todo lo copiable).
+
 Toda corrida entrega dos archivos: un Excel con fórmulas vivas y un informe en Markdown que lo interpreta.
 
 ## Qué hay aquí

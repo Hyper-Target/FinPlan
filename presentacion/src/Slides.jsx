@@ -160,18 +160,18 @@ function lista() {
     // ================================================================ Parte 3 · CDTLive (7)
     (n) => <Seccion n={n} num="3" titulo="Skill 1 · CDTLive" lead="¿Dónde rinde más un CDT hoy? De la petición al Excel, en siete diapositivas." />,
     (n) => (
-      <Sl n={n} ey="CDTLive · 1 de 7 · Cómo se pidió" titulo="No se pidió todo de una vez: cuatro mensajes" clase="denso">
+      <Sl n={n} ey="CDTLive · 1 de 7 · Cómo se plantea" titulo="La skill se plantea en cuatro etapas, no de una vez" clase="denso">
         <div className="dos a">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {[['1. Idea', '"Una skill que traiga información en vivo de CDTs… Cálculo de esto: davivienda.com/simuladores/simulador-cdt"'], ['2. Solo planear', '"Por ahora solo planea, dime qué fuentes de bancos colombianos podemos obtener."'], ['3. Fuentes exactas', '"Busca de manera precisa los links exactos que usaríamos para extraer la información."'], ['4. Prompt detallado', '"Hazlo para los bancos y fintech más importantes… toda salida será en Excel y en un MD. Dame el prompt, extremadamente detallado."']].map(([a, b]) => (
-              <div key={a} className="card" style={{ padding: '12px 16px' }}><b style={{ color: 'var(--violet-3)', fontSize: 15 }}>{a}</b><p style={{ marginTop: 4, fontStyle: 'italic' }}>{b}</p></div>))}
+            {[['1. Problema y referente', 'Una pregunta concreta (¿dónde rinde más un CDT hoy?) y un referente que se quiere replicar: el simulador de CDT de Davivienda.'], ['2. Planeación', 'Primero se identifican las fuentes oficiales posibles para los bancos y las fintech de Colombia. Todavía no se escribe código.'], ['3. Verificación de fuentes', 'Se buscan los enlaces exactos y se prueban con consultas reales para confirmar columnas, fechas y cobertura.'], ['4. Especificación', 'Se define el entregable (un Excel con fórmulas y un informe en Markdown) y el estándar: que una skill se pueda ejecutar sin errores con un modelo pequeño.']].map(([a, b]) => (
+              <div key={a} className="card" style={{ padding: '12px 16px' }}><b style={{ color: 'var(--violet-3)', fontSize: 15 }}>{a}</b><p style={{ marginTop: 4 }}>{b}</p></div>))}
           </div>
-          <div className="card destacada"><h3>Lo que hizo la diferencia</h3><ul className="lista">
-            <li>Un <b>ejemplo concreto</b>: el simulador de Davivienda.</li>
-            <li><b>Plan antes que código</b>: primero fuentes, después construir.</li>
+          <div className="card destacada"><h3>Qué hace sólido el planteamiento</h3><ul className="lista">
+            <li>Un <b>referente concreto</b> que se quiere replicar.</li>
+            <li><b>Planeación antes que código</b>: primero fuentes, después construcción.</li>
             <li><b>Enlaces verificados</b> con consultas reales.</li>
-            <li><b>Formato exigido</b>: Excel con fórmulas + informe Markdown.</li>
-            <li><b>Estándar</b>: que la ejecute sin errores un modelo pequeño.</li>
+            <li><b>Entregable definido</b>: Excel con fórmulas e informe en Markdown.</li>
+            <li><b>Estándar de calidad</b> explícito y comprobable.</li>
           </ul></div>
         </div>
       </Sl>
@@ -257,20 +257,20 @@ function lista() {
     // ================================================================ Parte 4 · RiskLive (7)
     (n) => <Seccion n={n} num="4" titulo="Skill 2 · RiskLive" lead="El Model Risk del curso aplicado a una persona: ¿con qué probabilidad llego a mi meta?" />,
     (n) => (
-      <Sl n={n} ey="RiskLive · 1 de 7 · Cómo se pidió" titulo="Se partió del modelo del profesor" clase="denso">
+      <Sl n={n} ey="RiskLive · 1 de 7 · Cómo se plantea" titulo="Se parte del Model Risk del curso" clase="denso">
         <div className="dos a">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {[['El pedido', '"Que haga lo del Model Risk pero con información en vivo, que genere un Excel y demás."'], ['Paso 0 obligatorio', 'Leer los dos Model Risk del profesor y documentar hojas, tablas, nombres y fórmulas antes de programar.'], ['Entradas', 'Aporte mensual, meta en pesos de hoy, ahorro inicial, años y pesos CDT / COLCAP / dólares.'], ['Estándar', 'Toda la estadística en Python con semilla fija; Excel con fórmulas vivas; informe que interpreta.']].map(([a, b]) => (
+            {[['Objetivo', 'Llevar el Model Risk del curso a finanzas personales, con datos oficiales en vivo, y entregar un Excel y un informe.'], ['Paso 0', 'Documentar el modelo del curso antes de programar: hojas, tablas, nombres de variables y fórmulas.'], ['Entradas', 'Aporte mensual, meta en pesos de hoy, ahorro inicial, años y distribución entre CDT, COLCAP y dólares.'], ['Estándar', 'Estadística y simulación en Python con semilla fija; Excel con fórmulas vivas; informe que interpreta.']].map(([a, b]) => (
               <div key={a} className="card" style={{ padding: '12px 16px' }}><b style={{ color: 'var(--violet-3)', fontSize: 15 }}>{a}</b><p style={{ marginTop: 4 }}>{b}</p></div>))}
           </div>
-          <div className="card destacada"><h3>Hallazgo del paso 0</h3><p>El Model Risk del curso es una plantilla: tiene la estructura (tabla MBASE, variables PerRate, EAR, NOM) y series hasta 2024, pero <b>no trae la simulación</b>.</p><p>RiskLive conserva esa estructura y agrega la calibración con datos de hoy y el Monte Carlo.</p></div>
+          <div className="card destacada"><h3>Qué conserva y qué agrega</h3><p><b>Conserva</b> la estructura del modelo del curso: la tabla MBASE (Period, Inflow, Outflow, NetCF, Balance) y las variables PerRate, EAR y NOM.</p><p><b>Agrega</b> la calibración con datos de hoy, la simulación Monte Carlo, la sensibilidad y los controles de integridad.</p></div>
         </div>
       </Sl>
     ),
     (n) => (
       <Sl n={n} ey="RiskLive · 2 de 7 · Del curso a la persona" titulo="El mismo modelo, con otras preguntas" clase="denso" presenta="Leydis Niebles">
         <table className="t tabla2"><thead><tr><th>En el Model Risk del profesor</th><th>En RiskLive</th></tr></thead><tbody>
-          {[['Asset, Principal (inversión inicial)', 'Ahorro inicial'], ['Installment, nInstallments', 'Aporte mensual y número de meses'], ['Tabla MBASE: Period, Inflow, Outflow, NetCF, Balance', 'Las mismas columnas, con fórmulas vivas, por activo'], ['PerRate, EAR, NOM (entradas)', 'Salidas: la TIR implícita del portafolio'], ['Validación ΣXfd = 0 y LastBalance = 0', 'Controles automáticos'], ['VPN del proyecto', 'Valor final en pesos de hoy'], ['P(VPN < 0)', 'P(no llegar a la meta)'], ['Series fijas: TRM, IBR, UVR hasta 2024', 'COLCAP, TRM, CDT, IPC en vivo']].map(([a, b]) => <tr key={a}><td>{a}</td><td><b>{b}</b></td></tr>)}
+          {[['Asset, Principal (inversión inicial)', 'Ahorro inicial'], ['Installment, nInstallments', 'Aporte mensual y número de meses'], ['Tabla MBASE: Period, Inflow, Outflow, NetCF, Balance', 'Las mismas columnas, con fórmulas vivas, por activo'], ['PerRate, EAR, NOM (entradas)', 'Salidas: la TIR implícita del portafolio'], ['Validación ΣXfd = 0 y LastBalance = 0', 'Controles automáticos'], ['VPN del proyecto', 'Valor final en pesos de hoy'], ['P(VPN < 0)', 'P(no llegar a la meta)'], ['Series históricas de mercado (TRM, IBR, UVR)', 'COLCAP, TRM, CDT e IPC actualizados en vivo']].map(([a, b]) => <tr key={a}><td>{a}</td><td><b>{b}</b></td></tr>)}
         </tbody></table>
       </Sl>
     ),

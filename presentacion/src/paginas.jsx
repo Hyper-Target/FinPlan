@@ -7,6 +7,8 @@ import {
 import { Codigo, Pestanas, Kpi, Simple, Bloque, ComoLeer, fCop, fPct } from './components/ui.jsx';
 import { BarrasCDT, LeyendaCategorias, FanChart, Histograma, SensAporte } from './components/charts.jsx';
 import Chat from './components/Chat.jsx';
+import skillCdt from '../../skills/PlanFin/CDTLive/SKILL.md?raw';
+import skillRisk from '../../skills/PlanFin/RiskLive/SKILL.md?raw';
 import imgCdtResumen from './img/CDTLive_Resumen.png';
 import imgCdtControles from './img/CDTLive_Controles.png';
 import imgRiskResumen from './img/RiskLive_Resumen.png';
@@ -196,7 +198,7 @@ function RiskLive() {
           <tr><td>PerRate, EAR, NOM</td><td>La tasa implícita del portafolio</td></tr>
           <tr><td>Validación ΣXfd = 0</td><td>Control automático en el Excel</td></tr>
           <tr><td>VPN y probabilidad de VPN negativo</td><td>Valor final y probabilidad de no llegar a la meta</td></tr>
-          <tr><td>Series fijas (TRM, IBR hasta 2024)</td><td>Series del Banco de la República y el DANE en vivo</td></tr>
+          <tr><td>Series históricas de mercado (TRM, IBR, UVR)</td><td>Series del Banco de la República y el DANE actualizadas en vivo</td></tr>
         </tbody></table>
       </div>
     </Bloque>
@@ -328,8 +330,8 @@ function Pedir() {
   const [k, setK] = useState('1');
   const actual = SECUENCIA_PROMPTS.find((x) => x.n === k);
   return (<>
-    <Simple>La calidad de la skill depende de cómo se pida. Lo que mejor funcionó: dar ejemplos, pasar enlaces para verificar, decir el formato esperado, pedir primero un plan y corregir sobre la marcha. Y no pedir todo de una vez, sino por etapas.</Simple>
-    <Bloque titulo="Ocho reglas para pedirle bien a un agente" sub="Cada una con la frase que se usó al construir CDTLive y RiskLive.">
+    <Simple>La calidad de la skill depende de cómo se plantee el problema. Las prácticas que se aplicaron: dar ejemplos de referencia, pasar enlaces para verificar, definir el formato esperado, pedir primero un plan y ajustar sobre la marcha. Y no pedirlo todo de una vez, sino por etapas.</Simple>
+    <Bloque titulo="Ocho reglas para pedirle bien a un agente" sub="Cada una con un ejemplo de cómo redactarla.">
       <div className="grid g2">
         {PRINCIPIOS_PROMPT.map((x, i) => (
           <div key={x.t} className="card"><div className="num">{i + 1}</div><h3>{x.t}</h3><p>{x.d}</p><div className="cita">"{x.cita}"</div></div>
@@ -345,6 +347,77 @@ function Pedir() {
 }
 
 // ================================================================ Inicio
+
+// ================================================================ Descargar y copiar
+const REPO = 'https://github.com/Hyper-Target/FinPlan';
+
+function Descargar() {
+  const [os, setOs] = useState('windows');
+  const [ag, setAg] = useState('gemini');
+  const [sk, setSk] = useState('cdt');
+  const carpeta = { gemini: '.agents/skills', codex: '.agents/skills', claude: '.claude/skills' }[ag];
+  const win = (n) => `New-Item -ItemType Junction -Path ${carpeta.replace(/\//g, '\\')}\\${n} -Target skills\\PlanFin\\${n}`;
+  const mac = (n) => `ln -s "$PWD/skills/PlanFin/${n}" ${carpeta}/${n}`;
+  const enlaces = os === 'windows'
+    ? [`New-Item -ItemType Directory -Force -Path ${carpeta.replace(/\//g, '\\')}`, win('CDTLive'), win('RiskLive')]
+    : [`mkdir -p ${carpeta}`, mac('CDTLive'), mac('RiskLive')];
+  const term = os === 'windows' ? 'PowerShell' : 'Terminal';
+  return (<>
+    <Simple>Todo lo que se hizo está en un repositorio público de GitHub: las dos skills, los prompts, esta presentación y los guiones. Puede descargarlo, copiar lo que necesite y usarlo con su propio agente.</Simple>
+
+    <Bloque titulo="1. Descargar el repositorio" sub="Dos formas. La segunda no necesita instalar nada.">
+      <div className="grid g2">
+        <div className="card"><h3>Con Git</h3><p>Si ya tiene Git instalado:</p><div style={{ marginTop: 12 }}><Codigo lineas={[`git clone ${REPO}`, 'cd FinPlan']} etiqueta={term} /></div></div>
+        <div className="card"><h3>Como archivo ZIP</h3><p>Descargue, descomprima y abra la carpeta resultante en la terminal.</p>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 14 }}>
+            <a className="btn primary" href={`${REPO}/archive/refs/heads/main.zip`}>Descargar ZIP</a>
+            <a className="btn" href={REPO} target="_blank" rel="noreferrer">Ver en GitHub</a>
+          </div></div>
+      </div>
+    </Bloque>
+
+    <Bloque titulo="2. Qué hay en el repositorio">
+      <div className="card" style={{ marginTop: 16 }}>
+        <table className="t"><thead><tr><th>Carpeta</th><th>Contenido</th></tr></thead><tbody>
+          {[['skills/PlanFin/CDTLive', 'Compara CDT de 28 bancos y fintech con datos de la Superfinanciera'], ['skills/PlanFin/RiskLive', 'Monte Carlo de CDT, COLCAP y dólares calibrado con datos históricos'], ['skills/PlanFin/_shared', 'Fuentes verificadas, convenciones y librería común'], ['skills/PlanFin/_prompts', 'Los prompts de construcción y la guía para pedir bien'], ['salidas', 'Una corrida real de cada skill (Excel e informe)'], ['presentacion', 'Esta web y las diapositivas, en React, con los guiones']].map(([a, b]) => (
+            <tr key={a}><td><a href={`${REPO}/tree/main/${a}`} target="_blank" rel="noreferrer"><code>{a}</code></a></td><td>{b}</td></tr>))}
+        </tbody></table>
+      </div>
+    </Bloque>
+
+    <Bloque titulo="3. Instalar las skills en su agente" sub="Se enlazan a la carpeta donde su agente busca skills. No se copian, para que encuentren la librería común.">
+      <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 14 }}>
+        <Pestanas opciones={OS} valor={os} onChange={setOs} />
+        <Pestanas opciones={[{ id: 'gemini', label: 'Gemini CLI' }, { id: 'codex', label: 'Codex' }, { id: 'claude', label: 'Claude Code' }]} valor={ag} onChange={setAg} />
+      </div>
+      <Paso n="1" titulo="Instale las librerías" texto="Se necesita Python 3.10 o superior.">
+        <Codigo lineas={['pip install requests openpyxl pandas numpy scipy truststore']} etiqueta={term} />
+      </Paso>
+      <Paso n="2" titulo={`Enlace las skills en ${carpeta}`} texto="Ejecute estas líneas dentro de la carpeta FinPlan.">
+        <Codigo lineas={enlaces} etiqueta={term} />
+      </Paso>
+      <Paso n="3" titulo="Abra el agente en esa carpeta y pruebe" texto="Escriba / para ver la lista de skills, o nombre la skill en lenguaje natural.">
+        <Codigo lineas={[ag]} etiqueta={term} />
+        <div style={{ marginTop: 10 }}><Codigo texto="/CDTLive 10 millones a 360 días con pago al vencimiento" etiqueta="Pedido" /></div>
+        <p style={{ marginTop: 10 }}>También funcionan sin agente, desde la carpeta FinPlan: <code>python skills/PlanFin/CDTLive/scripts/cdtlive.py --monto 10000000 --plazo 360</code></p>
+      </Paso>
+    </Bloque>
+
+    <Bloque titulo="4. Copiar el manual de cada skill" sub="El archivo SKILL.md es el que lee el agente. Está completo, con botón de copiar.">
+      <div style={{ marginTop: 14 }}><Pestanas opciones={[{ id: 'cdt', label: 'CDTLive' }, { id: 'risk', label: 'RiskLive' }]} valor={sk} onChange={setSk} /></div>
+      <div style={{ marginTop: 12 }}><Codigo texto={sk === 'cdt' ? skillCdt : skillRisk} etiqueta={`${sk === 'cdt' ? 'CDTLive' : 'RiskLive'}/SKILL.md`} alto={460} /></div>
+    </Bloque>
+
+    <Bloque titulo="5. Más para copiar">
+      <div className="grid g3">
+        <div className="card"><h3>Prompts para crear su skill</h3><p>Tres listos y una plantilla, con la guía para pedir bien.</p><div style={{ marginTop: 12 }}><a className="btn" href="#/crear">Ver los prompts</a></div></div>
+        <div className="card"><h3>Guía de prompts</h3><p>Las reglas y las etapas, en un solo archivo Markdown.</p><div style={{ marginTop: 12 }}><a className="btn" href={`${REPO}/blob/main/skills/PlanFin/_prompts/03_GUIA_PROMPTS.md`} target="_blank" rel="noreferrer">Abrir en GitHub</a></div></div>
+        <div className="card"><h3>Diapositivas en PDF</h3><p>Las 38 diapositivas de la exposición.</p><div style={{ marginTop: 12 }}><a className="btn" href={`${import.meta.env.BASE_URL}descargas/Diapositivas_Agentes_PlanFin.pdf`}>Descargar PDF</a></div></div>
+      </div>
+    </Bloque>
+  </>);
+}
+
 function Inicio({ paginas }) {
   const grupos = ['Entender', 'Ver', 'Hacer'];
   const desc = { Entender: 'Qué es un agente y cómo funciona una skill.', Ver: 'La demo y los resultados de las dos skills.', Hacer: 'Instale un agente gratis y cree su propia skill.' };
@@ -381,5 +454,6 @@ export const PAGINAS = [
   { slug: 'crear', n: 8, grupo: 'Hacer', titulo: 'Crear su skill', resumen: 'Pegue un prompt y el agente construye la skill.', C: Crear },
   { slug: 'usar', n: 9, grupo: 'Hacer', titulo: 'Usar su skill', resumen: 'Qué pedirle, cómo mejorarla y cómo programarla cada día.', C: Usar },
   { slug: 'pedir', n: 10, grupo: 'Hacer', titulo: 'Cómo pedirle bien', resumen: 'Las reglas y la secuencia de prompts que hacen una buena skill.', C: Pedir },
+  { slug: 'descargar', n: 11, grupo: 'Hacer', titulo: 'Descargar y copiar todo', resumen: 'El repositorio, los comandos para instalar las skills y sus manuales.', C: Descargar },
 ];
 export { Inicio };

@@ -284,8 +284,8 @@ export const USAR_SKILL = [
 // ---------------------------------------------------------------- Guion de la demo (conversación real, resumida)
 // Cada paso trae `explica`: qué está pasando, en palabras simples, para el panel lateral.
 export const DEMO = {
-  pregunta: 'Quiero una skill que compare los CDT de los bancos y las fintech de Colombia con datos oficiales de hoy. Que replique el simulador de Davivienda y que siempre me entregue un Excel y un informe.',
-  explicaPregunta: 'Todo empieza con una petición en lenguaje normal, como se la haría a un analista: qué quiere, con qué datos y qué debe entregar.',
+  pregunta: 'Necesito una skill que compare los CDT de los bancos y las fintech de Colombia con datos oficiales del día, que replique el cálculo del simulador de CDT de Davivienda y que entregue un Excel y un informe.',
+  explicaPregunta: 'Todo empieza con el planteamiento del problema: qué se necesita, con qué datos y qué debe entregar.',
   turnos: [
     {
       texto: 'Antes de escribir código voy a buscar dónde publica la Superfinanciera las tasas por entidad y a probar cada fuente con una consulta real.',
@@ -401,21 +401,21 @@ export const USO_EJEMPLOS = [
 // Lecciones de esta sesión: lo que funcionó cuando se construyeron CDTLive y RiskLive.
 export const PRINCIPIOS_PROMPT = [
   { t: 'Dé contexto y referencias', d: 'Diga quién es usted, para qué es y qué archivos o trabajos previos debe leer antes de empezar.',
-    cita: 'Revisen los skills que hay en la carpeta fintech… con los documentos que tengo en la carpeta de OneDrive.' },
+    cita: 'Lee los archivos de esta carpeta antes de empezar y resume lo que entendiste.' },
   { t: 'Muestre ejemplos de lo que espera', d: 'Un enlace, una captura o un archivo de ejemplo vale más que un párrafo de descripción.',
-    cita: 'Cálculo de esto: davivienda.com/simuladores/simulador-cdt' },
+    cita: 'Replica el cálculo de este simulador: [enlace].' },
   { t: 'Pida plan antes que código', d: 'Primero que proponga y verifique; usted aprueba y después construye. Evita trabajo en la dirección equivocada.',
-    cita: 'Por ahora solo planea, dime qué fuentes de bancos colombianos podemos obtener.' },
+    cita: 'Por ahora solo planifica: propón las fuentes y espera mi aprobación.' },
   { t: 'Exija fuentes verificadas', d: 'Pida los enlaces exactos y que los pruebe con una consulta real antes de programar.',
-    cita: 'Busca de manera precisa los links exactos que usaríamos para extraer la información.' },
+    cita: 'Dame los enlaces exactos y pruébalos con una consulta real.' },
   { t: 'Defina el entregable y el formato', d: 'Qué archivos, qué hojas, qué secciones. Si no lo dice, el agente lo inventa.',
-    cita: 'Toda salida será en Excel y en un MD interpretando eso.' },
+    cita: 'Cada corrida entrega un Excel con fórmulas y un informe en Markdown.' },
   { t: 'Fije el estándar de calidad', d: 'Para quién debe servir, con qué modelo debe funcionar y a qué nivel de rigor.',
-    cita: 'Que la gente lo pueda ejecutar en Haiku o Sonnet medio y aún así lo haga excelente.' },
+    cita: 'Debe poder ejecutarla sin errores un modelo pequeño y gratuito.' },
   { t: 'Ponga límites claros', d: 'Qué no hacer: no inventar cifras, no construir una app, no usar cierta fuente.',
-    cita: 'No quiero que me hagas una app de finanzas ni nada (no es el objetivo).' },
+    cita: 'No construyas una aplicación; solo la skill. No inventes cifras.' },
   { t: 'Corrija sobre la marcha', d: 'Si ve algo que no le gusta, dígalo en el momento con un ejemplo de lo que quiere.',
-    cita: 'Los fondos blancos dan más confianza, usa mejor esta plantilla…' },
+    cita: 'Ajusta el diseño: fondo blanco y morado como color principal.' },
 ];
 
 export const SECUENCIA_PROMPTS = [

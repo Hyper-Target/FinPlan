@@ -1,19 +1,19 @@
 # Guía: cómo pedirle a un agente que construya una buena skill
 
-Documento generado desde la presentación "De chatbot a agente" (Planeación Financiera, MFi Uninorte). Resume lo que funcionó al construir CDTLive y RiskLive.
+Documento generado desde la presentación "De chatbot a agente" (Planeación Financiera, MFi Uninorte). Resume las prácticas que se aplicaron al construir CDTLive y RiskLive.
 
 ## 1. Ocho reglas para pedir bien
 
-| # | Regla | Qué significa | Cómo se pidió en esta sesión |
+| # | Regla | Qué significa | Ejemplo de redacción |
 |---|---|---|---|
-| 1 | Dé contexto y referencias | Diga quién es usted, para qué es y qué archivos o trabajos previos debe leer antes de empezar. | "Revisen los skills que hay en la carpeta fintech… con los documentos que tengo en la carpeta de OneDrive." |
-| 2 | Muestre ejemplos de lo que espera | Un enlace, una captura o un archivo de ejemplo vale más que un párrafo de descripción. | "Cálculo de esto: davivienda.com/simuladores/simulador-cdt" |
-| 3 | Pida plan antes que código | Primero que proponga y verifique; usted aprueba y después construye. Evita trabajo en la dirección equivocada. | "Por ahora solo planea, dime qué fuentes de bancos colombianos podemos obtener." |
-| 4 | Exija fuentes verificadas | Pida los enlaces exactos y que los pruebe con una consulta real antes de programar. | "Busca de manera precisa los links exactos que usaríamos para extraer la información." |
-| 5 | Defina el entregable y el formato | Qué archivos, qué hojas, qué secciones. Si no lo dice, el agente lo inventa. | "Toda salida será en Excel y en un MD interpretando eso." |
-| 6 | Fije el estándar de calidad | Para quién debe servir, con qué modelo debe funcionar y a qué nivel de rigor. | "Que la gente lo pueda ejecutar en Haiku o Sonnet medio y aún así lo haga excelente." |
-| 7 | Ponga límites claros | Qué no hacer: no inventar cifras, no construir una app, no usar cierta fuente. | "No quiero que me hagas una app de finanzas ni nada (no es el objetivo)." |
-| 8 | Corrija sobre la marcha | Si ve algo que no le gusta, dígalo en el momento con un ejemplo de lo que quiere. | "Los fondos blancos dan más confianza, usa mejor esta plantilla…" |
+| 1 | Dé contexto y referencias | Diga quién es usted, para qué es y qué archivos o trabajos previos debe leer antes de empezar. | "Lee los archivos de esta carpeta antes de empezar y resume lo que entendiste." |
+| 2 | Muestre ejemplos de lo que espera | Un enlace, una captura o un archivo de ejemplo vale más que un párrafo de descripción. | "Replica el cálculo de este simulador: [enlace]." |
+| 3 | Pida plan antes que código | Primero que proponga y verifique; usted aprueba y después construye. Evita trabajo en la dirección equivocada. | "Por ahora solo planifica: propón las fuentes y espera mi aprobación." |
+| 4 | Exija fuentes verificadas | Pida los enlaces exactos y que los pruebe con una consulta real antes de programar. | "Dame los enlaces exactos y pruébalos con una consulta real." |
+| 5 | Defina el entregable y el formato | Qué archivos, qué hojas, qué secciones. Si no lo dice, el agente lo inventa. | "Cada corrida entrega un Excel con fórmulas y un informe en Markdown." |
+| 6 | Fije el estándar de calidad | Para quién debe servir, con qué modelo debe funcionar y a qué nivel de rigor. | "Debe poder ejecutarla sin errores un modelo pequeño y gratuito." |
+| 7 | Ponga límites claros | Qué no hacer: no inventar cifras, no construir una app, no usar cierta fuente. | "No construyas una aplicación; solo la skill. No inventes cifras." |
+| 8 | Corrija sobre la marcha | Si ve algo que no le gusta, dígalo en el momento con un ejemplo de lo que quiere. | "Ajusta el diseño: fondo blanco y morado como color principal." |
 
 ## 2. La secuencia de prompts (una etapa a la vez, cada una aprobada)
 
