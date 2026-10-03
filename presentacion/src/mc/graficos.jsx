@@ -9,10 +9,11 @@ export const pc = (p, d = 1) => `${(p * 100).toFixed(d).replace('.', ',')} %`;
 
 // Marcas "redondas" para un eje que va de 0 a max
 function marcas(max, n = 5) {
+  if (!(max > 0) || !Number.isFinite(max)) return [0];
   const crudo = max / n, pot = Math.pow(10, Math.floor(Math.log10(crudo)));
   const f = crudo / pot, paso = (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * pot;
   const out = [];
-  for (let v = 0; v <= max + paso * 0.01; v += paso) out.push(v);
+  for (let v = 0; v <= max + paso * 0.01 && out.length < 50; v += paso) out.push(v);
   return out;
 }
 const tickM = (v) => (v === 0 ? '0' : v >= 1e9 ? `${(v / 1e9).toLocaleString('es-CO')} MM` : `${(v / 1e6).toLocaleString('es-CO', { maximumFractionDigits: 1 })} M`);
@@ -65,11 +66,11 @@ export function Abanico({ datos, meta, W = 900, alto = 380, trayectorias = true 
 // ------------------------------------------------------------------ histograma del valor final
 export function Hist({ bins, meta, W = 900, alto = 280 }) {
   const pad = { l: 10, r: 10, t: 14, b: 30 };
-  const maxC = Math.max(...bins.map((d) => d.n));
+  const maxC = Math.max(1, ...bins.map((d) => d.n));
   const bw = (W - pad.l - pad.r) / bins.length;
   const xv = (v) => {
     const lo = bins[0].desde, hi = bins[bins.length - 1].hasta;
-    return pad.l + ((v - lo) / (hi - lo)) * (W - pad.l - pad.r);
+    return pad.l + ((v - lo) / (hi - lo || 1)) * (W - pad.l - pad.r);
   };
   const cada = Math.ceil(bins.length / 6);
   const enRango = meta >= bins[0].desde && meta <= bins[bins.length - 1].hasta;
@@ -117,8 +118,12 @@ export function Convergencia({ datos, W = 900, alto = 300, final }) {
   const pad = { l: 50, r: 16, t: 14, b: 34 };
   const nMax = datos[datos.length - 1].n, nMin = datos[0].n;
   const lx = (n) => pad.l + ((Math.log(n) - Math.log(nMin)) / (Math.log(nMax) - Math.log(nMin))) * (W - pad.l - pad.r);
-  const lo = Math.max(0, Math.min(...datos.map((d) => d.p - d.e)));
-  const hi = Math.min(1, Math.max(...datos.map((d) => d.p + d.e)));
+  let lo = Math.max(0, Math.min(...datos.map((d) => d.p - d.e)));
+  let hi = Math.min(1, Math.max(...datos.map((d) => d.p + d.e)));
+  if (hi - lo < 0.1) { // probabilidad casi constante (0 % o 100 %): se abre el eje para que se vea la línea
+    const c = (hi + lo) / 2;
+    lo = Math.max(0, Math.min(c - 0.05, 0.9)); hi = Math.min(1, lo + 0.1);
+  }
   const y = (v) => alto - pad.b - ((v - lo) / (hi - lo || 1)) * (alto - pad.t - pad.b);
   const area = datos.map((d, i) => `${i ? 'L' : 'M'}${lx(d.n)},${y(Math.min(hi, d.p + d.e))}`).join(' ') + ' ' +
     datos.slice().reverse().map((d) => `L${lx(d.n)},${y(Math.max(lo, d.p - d.e))}`).join(' ') + ' Z';

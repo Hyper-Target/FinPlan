@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Component, useEffect, useRef, useState } from 'react';
 import { Kpi, Simple, Bloque, ComoLeer } from '../components/ui.jsx';
 import { Abanico, Hist, BarrasP, Convergencia, fM, pc } from './graficos.jsx';
 import {
@@ -59,6 +59,14 @@ const Campo = ({ t, ayuda, children }) => (<label className="campo"><span classN
 const Numero = ({ valor, onChange, paso = 0.01, dec = 3 }) => (
   <input className="in-num" type="number" step={paso} value={Number(valor.toFixed(dec))} onChange={(e) => { const v = parseFloat(e.target.value); if (!Number.isNaN(v)) onChange(v); }} />
 );
+
+// Si un gráfico falla con una combinación extrema de supuestos, se muestra un aviso en lugar de dejar la página en blanco.
+class Protegido extends Component {
+  constructor(props) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(error) { return { error }; }
+  componentDidUpdate(prev) { if (prev.clave !== this.props.clave && this.state.error) this.setState({ error: null }); }
+  render() { return this.state.error ? <p className="muted">Este gráfico no se pudo dibujar con estos supuestos.</p> : this.props.children; }
+}
 
 // ------------------------------------------------------------------ página
 export default function Simulador() {
@@ -206,14 +214,14 @@ export default function Simulador() {
 
           <div className="card" style={{ marginTop: 16 }}>
             <h3>Cómo crece el ahorro mes a mes</h3>
-            <Abanico datos={res.ab} meta={res.p.meta} />
+            <Protegido clave={res.ms}><Abanico datos={res.ab} meta={res.p.meta} /></Protegido>
             <ComoLeer>la línea oscura es la mediana y las líneas finas son 40 escenarios al azar. La franja clara cubre del percentil 5 al 95 y la oscura del 25 al 75. La línea roja es la meta en pesos de hoy.</ComoLeer>
           </div>
 
           <div className="grid g2">
             <div className="card">
               <h3>Todos los resultados posibles</h3>
-              <Hist bins={res.bins} meta={res.p.meta} W={520} alto={260} />
+              <Protegido clave={res.ms}><Hist bins={res.bins} meta={res.p.meta} W={520} alto={260} /></Protegido>
               <ComoLeer>cada barra cuenta escenarios con un valor final parecido. Las oscuras superan la meta.</ComoLeer>
             </div>
             <div className="card">
@@ -231,19 +239,19 @@ export default function Simulador() {
 
           <div className="card" style={{ marginTop: 16 }}>
             <h3>Qué pasa si aporto más o menos</h3>
-            <BarrasP items={res.sensAp} />
+            <Protegido clave={res.ms}><BarrasP items={res.sensAp} /></Protegido>
             <ComoLeer>misma simulación, cambiando solo el aporte. Gracias a la linealidad del modelo no hace falta volver a simular: se recalcula al instante.</ComoLeer>
           </div>
 
           <div className="card" style={{ marginTop: 16 }}>
             <h3>Qué pasa si cambio el peso del COLCAP</h3>
-            {res.sensCol ? <BarrasP items={res.sensCol} /> : <p className="muted">Calculando…</p>}
+            {res.sensCol ? <Protegido clave={res.ms}><BarrasP items={res.sensCol} /></Protegido> : <p className="muted">Calculando…</p>}
             <ComoLeer>más renta variable suele subir el resultado típico y ensanchar el abanico. Según la meta y el horizonte, la probabilidad de llegar puede subir o bajar: compare con sus supuestos.</ComoLeer>
           </div>
 
           <div className="card" style={{ marginTop: 16 }}>
             <h3>Cuántas simulaciones hacen falta</h3>
-            <Convergencia datos={res.conv} final={e.pMeta} />
+            <Protegido clave={res.ms}><Convergencia datos={res.conv} final={e.pMeta} /></Protegido>
             <ComoLeer>la probabilidad estimada con pocas simulaciones oscila. Al aumentar el número se estabiliza y el intervalo de confianza se estrecha con la raíz de N. Con {e.n.toLocaleString('es-CO')} escenarios el error es de ± {(e.ic95 * 100).toFixed(1).replace('.', ',')} puntos.</ComoLeer>
           </div>
 
