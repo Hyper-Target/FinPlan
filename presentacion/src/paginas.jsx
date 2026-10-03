@@ -7,6 +7,8 @@ import {
 import { Codigo, Pestanas, Kpi, Simple, Bloque, ComoLeer, fCop, fPct } from './components/ui.jsx';
 import { BarrasCDT, LeyendaCategorias, FanChart, Histograma, SensAporte } from './components/charts.jsx';
 import Chat from './components/Chat.jsx';
+import Teoria from './mc/Teoria.jsx';
+import Simulador from './mc/Simulador.jsx';
 import skillCdt from '../../skills/PlanFin/CDTLive/SKILL.md?raw';
 import skillRisk from '../../skills/PlanFin/RiskLive/SKILL.md?raw';
 import imgCdtResumen from './img/CDTLive_Resumen.png';
@@ -169,6 +171,8 @@ function RiskLive() {
       <Kpi l="Caso malo razonable" v="$66,9 M" d="solo 5 % de escenarios peores" />
       <Kpi l="Aporte para 80 %" v="$1.127.533" d="al mes" tono="ok" />
     </div>
+
+    <div className="nota" style={{ marginTop: 18 }}><b>Pruébelo usted.</b> La matemática del modelo está en <a href="#/montecarlo">Monte Carlo: la matemática</a> y puede cambiar todos los supuestos en el <a href="#/simulador">Simulador en vivo</a>.</div>
 
     <Bloque titulo="Cómo crece el ahorro mes a mes" sub="10.000 escenarios posibles de un portafolio 60 % CDT, 25 % COLCAP y 15 % dólares.">
       <div className="card" style={{ marginTop: 16 }}>
@@ -449,11 +453,13 @@ export const PAGINAS = [
   { slug: 'demo', n: 3, grupo: 'Ver', titulo: 'Demo: así se construyó', resumen: 'La conversación con el agente que creó CDTLive, paso a paso.', C: Demo },
   { slug: 'cdtlive', n: 4, grupo: 'Ver', titulo: 'Skill 1: CDTLive', resumen: 'Compara los CDT de 28 bancos y fintech con datos oficiales del día.', C: CDTLive },
   { slug: 'risklive', n: 5, grupo: 'Ver', titulo: 'Skill 2: RiskLive', resumen: 'Simula 10.000 escenarios para saber si se llega a una meta de ahorro.', C: RiskLive },
-  { slug: 'confianza', n: 6, grupo: 'Ver', titulo: 'Por qué confiar', resumen: 'Pruebas, controles y trazabilidad de cada cifra.', C: Confianza },
-  { slug: 'instalar', n: 7, grupo: 'Hacer', titulo: 'Instalar un agente gratis', resumen: 'Desde abrir la terminal hasta iniciar sesión, en Windows o Mac.', C: Instalar },
-  { slug: 'crear', n: 8, grupo: 'Hacer', titulo: 'Crear su skill', resumen: 'Pegue un prompt y el agente construye la skill.', C: Crear },
-  { slug: 'usar', n: 9, grupo: 'Hacer', titulo: 'Usar su skill', resumen: 'Qué pedirle, cómo mejorarla y cómo programarla cada día.', C: Usar },
-  { slug: 'pedir', n: 10, grupo: 'Hacer', titulo: 'Cómo pedirle bien', resumen: 'Las reglas y la secuencia de prompts que hacen una buena skill.', C: Pedir },
-  { slug: 'descargar', n: 11, grupo: 'Hacer', titulo: 'Descargar y copiar todo', resumen: 'El repositorio, los comandos para instalar las skills y sus manuales.', C: Descargar },
+  { slug: 'montecarlo', n: 6, grupo: 'Ver', titulo: 'Monte Carlo: la matemática', resumen: 'Qué se calcula y por qué se puede confiar en el resultado, con demostraciones que se mueven.', C: Teoria },
+  { slug: 'simulador', n: 7, grupo: 'Ver', titulo: 'Simulador en vivo', resumen: 'Cambie ahorro, aporte, meta y portafolio y vea la simulación recalcularse en el navegador.', C: Simulador },
+  { slug: 'confianza', n: 8, grupo: 'Ver', titulo: 'Por qué confiar', resumen: 'Pruebas, controles y trazabilidad de cada cifra.', C: Confianza },
+  { slug: 'instalar', n: 9, grupo: 'Hacer', titulo: 'Instalar un agente gratis', resumen: 'Desde abrir la terminal hasta iniciar sesión, en Windows o Mac.', C: Instalar },
+  { slug: 'crear', n: 10, grupo: 'Hacer', titulo: 'Crear su skill', resumen: 'Pegue un prompt y el agente construye la skill.', C: Crear },
+  { slug: 'usar', n: 11, grupo: 'Hacer', titulo: 'Usar su skill', resumen: 'Qué pedirle, cómo mejorarla y cómo programarla cada día.', C: Usar },
+  { slug: 'pedir', n: 12, grupo: 'Hacer', titulo: 'Cómo pedirle bien', resumen: 'Las reglas y la secuencia de prompts que hacen una buena skill.', C: Pedir },
+  { slug: 'descargar', n: 13, grupo: 'Hacer', titulo: 'Descargar y copiar todo', resumen: 'El repositorio, los comandos para instalar las skills y sus manuales.', C: Descargar },
 ];
 export { Inicio };

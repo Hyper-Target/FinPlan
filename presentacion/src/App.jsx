@@ -44,7 +44,7 @@ export default function App() {
     <div className="shell">
       <Menu actual={pag ? pag.slug : ''} />
       <main className="main">
-        <div className="pagina">
+        <div className={`pagina ${pag && pag.slug === 'simulador' ? 'ancha' : ''}`}>
           {!pag ? <Inicio paginas={PAGINAS} /> : (<>
             <div className="cab">
               <div className="migas">{pag.grupo} · {pag.n} de {PAGINAS.length}</div>
